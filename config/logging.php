@@ -72,6 +72,12 @@ return [
             'days' => 14,
             'replace_placeholders' => true,
         ],
+        
+        'custom' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/custom.log'),
+            'level' => env('LOG_LEVEL', 'debug')
+        ],
 
         'slack' => [
             'driver' => 'slack',

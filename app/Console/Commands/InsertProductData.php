@@ -7,6 +7,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\Product;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 use SimpleXMLElement;
 
 class InsertProductData extends Command
@@ -70,8 +71,15 @@ class InsertProductData extends Command
                 Product::insert($products);
             }
             $this->info('Product data insertion completed.');
-        }catch(\Exception $e){
-            $this->warn("Product is not successfully enterd in database". $e->getMessage());
+        } 
+        catch (\FileNotFoundException $e) {
+            Log::channel('custom')->info("File Not Found While inserting Data. Skipped insertion.");
+            $this->error("File not found: " . $e->getMessage());
+        } 
+        catch (\Exception $e) {
+            Log::channel('custom')->info("Product is not created see errors. " . $e->getMessage());
+            Log::error("Product insertion failed: " . $e->getMessage());
+            $this->warn("Product is not successfully entered in the database. Check the logs for details.");
         }
     }
 }    

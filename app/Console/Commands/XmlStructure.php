@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use SimpleXMLElement;
 use Illuminate\Support\Facades\File as LaravelFile;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class XmlStructure extends Command
@@ -18,6 +19,7 @@ class XmlStructure extends Command
         $file = storage_path('app/uploads/' . $filename);
 
         if (!LaravelFile::exists($file)) {
+            Log::channel('custom')->info("File Not Found {$file} ");
             $this->error('File not found: ' . $file);
             return;
         }
@@ -25,6 +27,7 @@ class XmlStructure extends Command
         $xml = simplexml_load_file($file);
 
         if ($xml === false) {
+            Log::channel('custom')->info("File Not Load {$file} ");
             $this->error('Failed to load XML file.');
             return;
         }
