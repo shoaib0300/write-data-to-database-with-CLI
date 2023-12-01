@@ -7,6 +7,10 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
 class Kernel extends ConsoleKernel
 {
+    // Add XmlStructure Class to see .XML file in JSON formet to see the data
+    protected $commands = [
+        Commands\XmlStructure::class
+    ];
     /**
      * Define the application's command schedule.
      */
