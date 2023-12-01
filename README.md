@@ -26,10 +26,7 @@ Run Composer to install project dependencies:
 composer install
 ```
 
-Before using the `XmlStructure` and `InsertProductData` commands, make sure to follow these steps:
-
-1. Upload the XML file you want to process into the `storage/app/uploads/` directory.
-2. Ensure your Laravel environment is properly configured, and the database connection details are set in the `.env` file.
+## Ensure your Laravel environment is properly configured, and the database connection details are set in the `.env` file.
 
 ```dotenv
 DB_CONNECTION=mysql                       # Database connection type (e.g., mysql)
@@ -49,6 +46,9 @@ php artisan migrate
 ```
 
 ## Insert XML Data to JSON Form to Check Table Columns
+
+Before using the `XmlStructure` and `InsertProductData` commands, make sure to follow these steps:
+Upload the XML file you want to process into the `storage/app/uploads/` directory.
 
 No additional installation steps are required. The command is ready to use once you've uploaded your XML file.
 
