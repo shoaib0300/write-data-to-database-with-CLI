@@ -2,11 +2,11 @@
 
 ## Introduction
 
-This Laravel project includes a custom Artisan command, `XmlStructure`, designed to inspect an XML file, transform its structure, and `InsertProductData` command store the data in a database with CLI. This can be particularly useful for handling XML data seamlessly in a Laravel application.
+This Laravel project includes custom Artisan commands, `XmlStructure`, and `InsertProductData`, designed to inspect an XML file, transform its structure, and store the data in a database with CLI. This can be particularly useful for handling XML data seamlessly in a Laravel application.
 
 ## Prerequisites
 
-## GitHub Clone and Composer Install
+### GitHub Clone and Composer Install
 
 Clone the repository from GitHub:
 
@@ -26,7 +26,7 @@ Run Composer to install project dependencies:
 composer install
 ```
 
-Before using the `XmlStructure` and `InsertProductData` command, make sure to follow these steps:
+Before using the `XmlStructure` and `InsertProductData` commands, make sure to follow these steps:
 
 1. Upload the XML file you want to process into the `storage/app/uploads/` directory.
 2. Ensure your Laravel environment is properly configured, and the database connection details are set in the `.env` file.
@@ -38,6 +38,14 @@ DB_PORT=3306                              # Database port (usually 3306 for MySQ
 DB_DATABASE=laravel_project               # Database name
 DB_USERNAME=root                          # Database username
 DB_PASSWORD=                              # Database password
+```
+
+### Database Migration
+
+Run database migrations:
+
+```bash
+php artisan migrate
 ```
 
 ## Insert XML Data to JSON Form to Check Table Columns
@@ -73,8 +81,9 @@ To insert product data into the database from the XML file, you can use the `pro
 
 Note: Make sure your database connection settings in the `.env` file are correctly configured.
 
+## PHPUnit Test Cases
 
-## To run PHPUnit test cases for `XmlStructureTest`, use the following command:
+To run PHPUnit test cases for `XmlStructureTest`, use the following command:
 
 ```bash
 php artisan test --filter XmlStructureTest
