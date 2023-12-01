@@ -7,46 +7,25 @@ use SimpleXMLElement;
 use Illuminate\Support\Facades\File as LaravelFile;
 use Illuminate\Support\Facades\Storage;
 
-/**
- * XmlStructure Command
- *
- * This command inspects an XML file, outputs its structure in JSON format, and can be useful for debugging or understanding XML content.
- */
-
 class XmlStructure extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
     protected $signature = 'xml:inspect {filename}';
+    protected $description = 'Inspect XML file structure';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Here We can see the JSON Format of the uploaded file.';
-
-    /**
-     * Execute the console command.
-     */
     public function handle(): void
     {
-        // Retrieve the filename argument
-        $file_name = $this->argument('filename');
-        $file = storage_path('app/uploads/' . $file_name);
+        $filename = $this->argument('filename');
+        $file = storage_path('app/uploads/' . $filename);
 
-        if(!LaravelFile::exists($file)){
-            $this->error('File Not Found: ' . $file);
+        if (!LaravelFile::exists($file)) {
+            $this->error('File not found: ' . $file);
             return;
         }
 
         $xml = simplexml_load_file($file);
 
-        if($xml == false){
-            $this->error('Failed to load XML File:');
+        if ($xml === false) {
+            $this->error('Failed to load XML file.');
             return;
         }
 
@@ -57,21 +36,21 @@ class XmlStructure extends Command
         $this->info(json_encode($this->xmlToArray($xml), JSON_PRETTY_PRINT));
     }
 
-    // Convert a SimpleXMLElement object representing XML to a nested associative array.
     protected function xmlToArray(SimpleXMLElement $xml): array
     {
         $array = [];
 
-        foreach($xml->children() as $child){
+        foreach ($xml->children() as $child) {
             $item = [];
-            foreach($child->attributes() as $key=> $value) {
+            foreach ($child->attributes() as $key => $value) {
                 $item[$key] = (string) $value;
             }
             foreach ($child->children() as $key => $value) {
                 $item[$key] = $value->count() > 0 ? $this->xmlToArray($value) : (string) $value;
             }
             $array[] = $item;
-        }    
+        }
+
         return $array;
     }
 }

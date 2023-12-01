@@ -16,7 +16,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->text('short_desc');
-            $table->float('price');
+            $table->string('price');
             $table->string('link');
             $table->string('image');
             $table->string('brand');

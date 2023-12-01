@@ -9,7 +9,9 @@ class Kernel extends ConsoleKernel
 {
     // Add XmlStructure Class to see .XML file in JSON formet to see the data
     protected $commands = [
-        Commands\XmlStructure::class
+        Commands\XmlStructure::class,
+        Commands\InsertProductData::class
+
     ];
     /**
      * Define the application's command schedule.
