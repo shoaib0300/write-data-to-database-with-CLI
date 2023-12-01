@@ -17,7 +17,7 @@ No additional installation steps are required. The command is ready to use once 
 
 ## Usage
 
-Execute the following command in your terminal:
+Execute the following command in your terminal to see the uploaded file content in JSON format:
 
 ```bash
 php artisan xml:inspect {filename}
