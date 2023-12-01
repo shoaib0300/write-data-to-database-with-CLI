@@ -26,7 +26,7 @@ Run Composer to install project dependencies:
 composer install
 ```
 
-## Ensure your Laravel environment is properly configured, and the database connection details are set in the `.env` file.
+## Ensure your Laravel environment is properly configured, and the database connection details are set in the `.env` and change the name .env.example to .env file.
 
 ```dotenv
 DB_CONNECTION=mysql                       # Database connection type (e.g., mysql)
